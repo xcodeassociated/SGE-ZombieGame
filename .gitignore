@@ -34,6 +34,9 @@
 # Engine directory
 SGE
 
+# ECS entt
+entt
+
 # idea Clion
 */.idea/
 
