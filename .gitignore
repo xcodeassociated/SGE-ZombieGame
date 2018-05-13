@@ -31,4 +31,31 @@
 *.out
 *.app
 
+# Engine directory
 SGE
+
+# idea Clion
+*/.idea/
+
+# build dir
+build/*
+
+# cmake build dir
+*cmake-build-*/
+
+# CLion project
+*.idea/
+
+conanbuildinfo.txt
+conan_imports_manifest.txt
+
+/.vs
+/dlls
+/CMakeSettings.json
+/Setup/build/*
+/CppProperties.json
+
+#default local setup project libs
+setup
+
+
