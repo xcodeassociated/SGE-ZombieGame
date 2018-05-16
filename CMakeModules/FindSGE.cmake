@@ -1,5 +1,9 @@
 ## FindSGE version 0.1 -- this is not the final bersion of this module. Temporary solution.
 
+if (NOT SGE_ROOT)
+    message(ERROR "SGE_ROOT not specified!")
+endif()
+
 set(SGE_INCLUDE_DIR "${SGE_ROOT}/include")
 set(SGE_LIBRARY_DIR "${SGE_ROOT}/lib")
 set(SGE_FOUND ON)
