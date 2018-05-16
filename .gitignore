@@ -32,17 +32,16 @@
 *.app
 
 # Engine directory
-#SGE
+#     SGE default install path
+ZombieGame/SGE/
 
 # ECS entt
-entt
 
 # idea Clion
 */.idea/
 
 # build dir
 build/*
-
 # cmake build dir
 *cmake-build-*/
 
