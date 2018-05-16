@@ -1,9 +1,31 @@
+if (NOT INCLUDE_ENGINE_PROJECT)
+	set(GAME_SOURCE_FILES main.cpp
+			Actions.cpp
+			Actions.hpp
+			Logics.cpp
+			Logics.hpp
+			Objects.cpp
+			Objects.hpp
+			ZombieScene.cpp
+			ZombieScene.hpp
+			IntroScene.cpp
+			IntroScene.hpp)
 
-set(GAME_SOURCE_FILES main.cpp
-		Actions.cpp 
-		Actions.hpp 
-		Logics.cpp 
-		Logics.hpp 
+	add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
+
+	target_link_libraries(${PROJECT_NAME}
+		${SGE_LIBRARIES}
+		${Boost_LIBRARIES}
+		${SDL2_LIBRARY}
+		${GLEW_LIBRARIES}
+		${OPENGL_LIBRARIES}
+		${GLM_LIBRARIES})
+else()
+	set(GAME_SOURCE_FILES main.cpp
+		Actions.cpp
+		Actions.hpp
+		Logics.cpp
+		Logics.hpp
 		Objects.cpp
 		Objects.hpp
 		ZombieScene.cpp
@@ -11,14 +33,26 @@ set(GAME_SOURCE_FILES main.cpp
 		IntroScene.cpp
 		IntroScene.hpp)
 
-add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
+	add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
 
-target_link_libraries(${PROJECT_NAME}
-	${SGE_LIBRARIES}
-	${Boost_LIBRARIES}
-	${SDL2_LIBRARY}
-	${GLEW_LIBRARIES}
-	${OPENGL_LIBRARIES}
-	${GLM_LIBRARIES}
-)
+	target_link_libraries(${PROJECT_NAME}
 
+		${Boost_LIBRARIES}
+		${SDL2_LIBRARY}
+		${GLEW_LIBRARIES}
+		${OPENGL_LIBRARIES}
+		${GLM_LIBRARIES}
+
+		Action
+		ActionHandler
+		IO
+		Level
+		Logic
+		Object
+		Game
+		Renderer
+		Scene
+		Utils
+		PicoPNG
+		Box2D)
+endif()
