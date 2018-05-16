@@ -1,8 +1,16 @@
 ﻿#ifndef ZOMBIE_SCENE
 #define ZOMBIE_SCENE
+
+#ifndef SGE_INCLUDED
 #include <Game/Game/sge_game.hpp>
 #include <Scene/sge_scene.hpp>
 #include <Scene/sge_box2dscene.hpp>
+#else
+#include "sge_game.hpp"
+#include "sge_scene.hpp"
+#include "sge_box2dscene.hpp"
+#endif
+
 #include "Objects.hpp"
 
 class CullingListener : public b2ContactListener

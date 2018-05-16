@@ -1,18 +1,26 @@
-﻿#include "sge_macro.hpp"
+﻿#include <fstream>
+#include <set>
+#include <functional>
+
+#include "sge_macro.hpp"
 #include "ZombieScene.hpp"
 #include "Logics.hpp"
 #include "Actions.hpp"
+
 #include <Logic/Logics/Colliders/sge_logic_collide_level_precise.hpp>
 #include <Logic/Logics/Movers/sge_logic_move.hpp>
 #include <Logic/Logics/Camera/sge_logic_camera_zoom.hpp>
-#include <fstream>
-#include <set>
-#include <functional>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <Logic/Logics/World/sge_worldstep.hpp>
 #include "Box2D/Dynamics/Contacts/b2Contact.h"
+
+#ifndef SGE_INCLUDED
 #include <Game/Director/sge_director.hpp>
+#else
+#include "sge_director.hpp"
+
+#endif
 
 bool CullingListener::cull(b2Fixture* A, b2Fixture* B)
 {

@@ -1,11 +1,18 @@
 ﻿#ifndef ZOMBIEGAME_OBJECTS
 #define ZOMBIEGAME_OBJECTS
 
+#include <forward_list>
 #include <glm/glm.hpp>
+
+#ifndef SGE_INCLUDED
 #include <Object/Object/sge_object.hpp>
 #include <Object/Object/Reactive/sge_reactive.hpp>
 #include <Object/Object/Shape/sge_shape_circle.hpp>
-#include <forward_list>
+#else
+#include "sge_object.hpp"
+#include "sge_reactive.hpp"
+#include "sge_shape_circle.hpp"
+#endif
 
 enum class Category : unsigned short
 {

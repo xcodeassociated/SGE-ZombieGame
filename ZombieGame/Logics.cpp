@@ -1,16 +1,27 @@
 ﻿#include "Logics.hpp"
 #include "Actions.hpp"
-#include <iostream>
-#include <Action/Actions/sge_action_move.hpp>
-#include <Object/Object/Shape/sge_shape_circle.hpp>
 
+#include <iostream>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+
+#ifndef SGE_INCLUDED
+#include <Action/Actions/sge_action_move.hpp>
+#include <Object/Object/Shape/sge_shape_circle.hpp>
 #include <IO/KeyboardState/sge_keyboard_state.hpp>
 #include <Utils/Timing/sge_fps_limiter.hpp>
 #include "Box2D/Dynamics/b2World.h"
 #include "Game/Director/sge_director.hpp"
+#else
+#include "sge_action_move.hpp"
+#include "sge_shape_circle.hpp"
+#include "sge_keyboard_state.hpp"
+#include "sge_fps_limiter.hpp"
+#include "Box2D/Dynamics/b2World.h"
+#include "sge_director.hpp"
+#endif
+
 #include "ZombieScene.hpp"
 
 float32 CheckWall::ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)

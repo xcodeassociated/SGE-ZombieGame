@@ -1,7 +1,13 @@
 ﻿#include "Actions.hpp"
 #include <iostream>
+
+#ifndef SGE_INCLUDED
 #include <Object/Camera2d/sge_camera2d.hpp>
 #include <Game/Director/sge_director.hpp>
+#else
+#include "sge_camera2d.hpp"
+#include "sge_director.hpp"
+#endif
 
 GOTO::GOTO(SGE::Object* object): Action(false), object(object)
 {

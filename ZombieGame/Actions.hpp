@@ -1,11 +1,17 @@
 ﻿#ifndef ZOMBIEGAME_ACTIONS
 #define ZOMBIEGAME_ACTIONS
 
+#ifndef SGE_INCLUDED
 #include <Action/sge_action.hpp>
 #include <Logic/sge_logic.hpp>
 #include <IO/Mouse/sge_mouse.hpp>
 #include <Game/Game/sge_game.hpp>
-
+#else
+#include "sge_action.hpp"
+#include "sge_logic.hpp"
+#include "sge_mouse.hpp"
+#include "sge_game.hpp"
+#endif
 
 class GOTO : public SGE::Action
 {
