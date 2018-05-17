@@ -169,18 +169,12 @@ endif()
 
 include(CMakeModules/sge_status.cmake)
 
-## SGE headers include
 set(SGE_DIR "SGE/SimpleGameEngine")
-include(CMakeModules/sge_includes.cmake)
 
 if (INCLUDE_ENGINE_PROJECT)
-	## compiler definition to use SGE includes
-	add_definitions(-DSGE_INCLUDED)
-
-	## SGE directory
+	include_directories(${SGE_DIR})
 	add_subdirectory(${SGE_DIR})
 else()
-	## SGE:
 	if (NOT SGE_ROOT)
 		message(WARNING "SGE_ROOT missing!")
 	endif()

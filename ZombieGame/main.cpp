@@ -7,15 +7,9 @@
 //
 #include <iostream>
 
-#ifndef SGE_INCLUDED
-#include <Game/Game/sge_game.hpp>
+#include <Game/sge_game.hpp>
 #include <Game/Director/sge_director.hpp>
 #include <Scene/sge_scene.hpp>
-#else
-#include "sge_game.hpp"
-#include "sge_director.hpp"
-#include "sge_scene.hpp"
-#endif
 
 // todo: change!
 #include "sge_macro.hpp"

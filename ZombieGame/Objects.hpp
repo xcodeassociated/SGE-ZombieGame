@@ -4,15 +4,9 @@
 #include <forward_list>
 #include <glm/glm.hpp>
 
-#ifndef SGE_INCLUDED
-#include <Object/Object/sge_object.hpp>
-#include <Object/Object/Reactive/sge_reactive.hpp>
-#include <Object/Object/Shape/sge_shape_circle.hpp>
-#else
-#include "sge_object.hpp"
-#include "sge_reactive.hpp"
-#include "sge_shape_circle.hpp"
-#endif
+#include <Object/sge_object.hpp>
+#include <Object/Reactive/sge_reactive.hpp>
+#include <Object/Shape/sge_shape_circle.hpp>
 
 enum class Category : unsigned short
 {

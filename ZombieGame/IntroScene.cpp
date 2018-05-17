@@ -1,21 +1,11 @@
 ﻿#include "IntroScene.hpp"
 
-#ifndef SGE_INCLUDED
-#include <Object/Object/Shape/sge_shape_rectangle.hpp>
-#include <Game/Game/sge_game.hpp>
+#include <Object/Shape/sge_shape_rectangle.hpp>
+#include <Game/sge_game.hpp>
 #include <Game/Director/sge_director.hpp>
 #include "Objects.hpp"
 #include "Logics.hpp"
 #include "Actions.hpp"
-#else
-#include "sge_shape_rectangle.hpp"
-#include "sge_game.hpp"
-#include "sge_director.hpp"
-#include "Objects.hpp"
-#include "Logics.hpp"
-#include "Actions.hpp"
-#endif
-
 
 
 IntroScene::IntroScene(SGE::Scene* next, const char* path) : path(path), next(next)

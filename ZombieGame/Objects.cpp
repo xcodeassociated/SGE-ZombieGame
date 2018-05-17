@@ -1,10 +1,6 @@
 ﻿#include "Objects.hpp"
 
-#ifndef SGE_INCLUDED
-#include <Object/Object/Shape/sge_shape_rectangle.hpp>
-#else
-#include "sge_shape_rectangle.hpp"
-#endif
+#include <Object/Shape/sge_shape_rectangle.hpp>
 
 glm::vec2 Player::getPosition() const noexcept
 {

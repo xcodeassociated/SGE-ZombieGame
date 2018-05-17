@@ -13,14 +13,9 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <Logic/Logics/World/sge_worldstep.hpp>
-#include "Box2D/Dynamics/Contacts/b2Contact.h"
-
-#ifndef SGE_INCLUDED
+#include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Game/Director/sge_director.hpp>
-#else
-#include "sge_director.hpp"
 
-#endif
 
 bool CullingListener::cull(b2Fixture* A, b2Fixture* B)
 {

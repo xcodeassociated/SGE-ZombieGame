@@ -2,12 +2,7 @@
 #define INTRO_SCENE
 
 #include <string>
-
-#ifndef SGE_INCLUDED
 #include <Scene/sge_scene.hpp>
-#else
-#include "sge_scene.hpp"
-#endif
 
 class IntroScene : public SGE::Scene
 {

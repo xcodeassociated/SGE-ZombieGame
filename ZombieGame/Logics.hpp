@@ -5,22 +5,12 @@
 #include <random>
 #include <functional>
 
-#ifndef SGE_INCLUDED
 #include <Logic/sge_logic.hpp>
 #include <Logic/Logics/Colliders/sge_logic_collide.hpp>
-#include "Box2D/Dynamics/b2WorldCallbacks.h"
-#include "IO/Key/sge_key.hpp"
-#include "Object/Camera2d/sge_camera2d.hpp"
-#include "IO/Mouse/sge_mouse.hpp"
-#else
-#include "sge_logic.hpp"
-#include "sge_logic_collide.hpp"
-#include "Box2D/Dynamics/b2WorldCallbacks.h"
-#include "sge_key.hpp"
-#include "sge_camera2d.hpp"
-#include "sge_mouse.hpp"
-#include "sge_reactive.hpp"
-#endif
+#include <Box2D/Dynamics/b2WorldCallbacks.h>
+#include <IO/Key/sge_key.hpp>
+#include <Object/Camera2d/sge_camera2d.hpp>
+#include <IO/Mouse/sge_mouse.hpp>
 
 #include "Objects.hpp"
 

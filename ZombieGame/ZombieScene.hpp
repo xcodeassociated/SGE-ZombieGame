@@ -1,15 +1,9 @@
 ﻿#ifndef ZOMBIE_SCENE
 #define ZOMBIE_SCENE
 
-#ifndef SGE_INCLUDED
-#include <Game/Game/sge_game.hpp>
+#include <Game/sge_game.hpp>
 #include <Scene/sge_scene.hpp>
 #include <Scene/sge_box2dscene.hpp>
-#else
-#include "sge_game.hpp"
-#include "sge_scene.hpp"
-#include "sge_box2dscene.hpp"
-#endif
 
 #include "Objects.hpp"
 
@@ -35,7 +29,7 @@ public:
 };
 
 class ZombieScene : public SGE::Box2DScene
-{	
+{
 protected:
 	//TODO Make Game ptr part of basic class?
 	SGE::Game* game = nullptr;
