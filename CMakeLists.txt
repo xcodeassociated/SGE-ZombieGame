@@ -58,7 +58,7 @@ if (BUILD_SHARED_LIBS AND WIN32)
 	add_definitions(-DSGE_SHARED)
 endif()
 
-if (UNIX)
+if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
@@ -75,7 +75,6 @@ if (UNIX)
 	endif()
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
-
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O3")
@@ -83,37 +82,27 @@ if (UNIX)
 	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -O3")
+elseif()
+	message (STATUS "MSVC ${MSVC_VERSION}v")
 
-elseif(WIN32)
-    message(STATUS "WINDOWS")
+	set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-        message (STATUS "MSVC ${MSVC_VERSION}v")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Od /W2")
+	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
+	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO  "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /O2")
 
-        set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+	set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Od /W2")
+	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
+	set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} /O2")
 
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Od /W2")
-        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
-        set(CMAKE_CXX_FLAGS_RELWITHDEBINFO  "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /O2")
+	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SGE-ZombieGame)
+	link_directories("${CMAKE_CURRENT_BINARY_DIR}/lib")
 
-        set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-		set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Od /W2")
-        set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
-        set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} /O2")
-
-        set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SGE-ZombieGame)
-        link_directories("${CMAKE_CURRENT_BINARY_DIR}/lib")
-
-        include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Logic_lib")
-        include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Utils_lib")
-        include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/ThirdParty_Librarys/Box2D")
-
-    else()
-		## TODO: Add support for MinGW on Windows platform
-        status(FATAL_ERROR "Other compiler than MSVC in curentley not supported for Windows build!")
-        return()
-    endif()
+	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Logic_lib")
+	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Utils_lib")
+	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/ThirdParty_Librarys/Box2D")
 endif()
 
 message(STATUS "Using PACKAGE_MANAGER: ${PACKAGE_MANAGER}")
@@ -137,7 +126,6 @@ else()
 	include(CMakeModules/sge_common_find.cmake)
 endif()
 
-## Boost:
 find_package(Boost COMPONENTS date_time program_options system filesystem REQUIRED)
 if(NOT Boost_FOUND)
 	message(Error "Boost not found")
@@ -146,7 +134,6 @@ else()
 	link_directories(${Boost_LIBRARY_DIRS})
 endif()
 
-# SDL:
 find_package(SDL2 REQUIRED)
 if (NOT SDL2_FOUND)
 	message(Error "SDL2 not found")
@@ -157,7 +144,6 @@ else()
 	add_definitions(${SDL2_DEFINITIONS})
 endif()
 
-## OpenGL:
 find_package(OpenGL REQUIRED)
 if(NOT OpenGL_FOUND)
         message(Error "OpenGL not found")
