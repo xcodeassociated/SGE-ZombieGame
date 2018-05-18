@@ -31,7 +31,6 @@ public:
 class ZombieScene : public SGE::Box2DScene
 {
 protected:
-	//TODO Make Game ptr part of basic class?
 	SGE::Game* game = nullptr;
 	std::string path;
 	std::vector<Human*> humans;

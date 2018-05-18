@@ -2,7 +2,6 @@
 #include <set>
 #include <functional>
 
-#include "sge_macro.hpp"
 #include "ZombieScene.hpp"
 #include "Logics.hpp"
 #include "Actions.hpp"
@@ -203,10 +202,10 @@ void ZombieScene::loadScene()
 	this->killCount = 0;
 	this->zombieCount = 0;
 	std::map<char, std::string> mask = {
-		{ 'R', PATH"ZombieGame/Resources/Textures/red_bricks.png" },
-		{ 'B', PATH"ZombieGame/Resources/Textures/red_bricks.png" },
-		{ 'G', PATH"ZombieGame/Resources/Textures/glass.png" },
-		{ 'L', PATH"ZombieGame/Resources/Textures/light_bricks.png" }
+		{ 'R', "Resources/Textures/red_bricks.png" },
+		{ 'B', "Resources/Textures/red_bricks.png" },
+		{ 'G', "Resources/Textures/glass.png" },
+		{ 'L', "Resources/Textures/light_bricks.png" }
 	};
 	this->Scene::loadLevel(this->path.c_str(), mask);
 
@@ -220,11 +219,11 @@ void ZombieScene::loadScene()
 	}
 
 	SGE::Object* Dummy1 = new Image(-1000, -1000);
-	game->textureObject(Dummy1, PATH"ZombieGame/Resources/Textures/deadzombie.png");
+	game->textureObject(Dummy1, "Resources/Textures/deadzombie.png");
 	deadZombieTexture = Dummy1->texture;
 	this->addObject(Dummy1);
 	SGE::Object* Dummy2 = new Image(-1000, -1000);
-	game->textureObject(Dummy2, PATH"ZombieGame/Resources/Textures/deadhuman.png");
+	game->textureObject(Dummy2, "Resources/Textures/deadhuman.png");
 	deadHumanTexture = Dummy2->texture;
 	this->addObject(Dummy2);
 
@@ -288,7 +287,7 @@ void ZombieScene::loadScene()
 	{
 		std::pair<float, float> pos = free.at(e);
 		Human* temp = new Human(pos.first, pos.second, 60 + rand() % 120);
-		game->textureObject(temp, PATH"ZombieGame/Resources/Textures/circle.png");
+		game->textureObject(temp, "Resources/Textures/circle.png");
 		this->addReactive(temp,&humanBodyDef);
 		temp->setPosition(pos.first, pos.second);
 		this->humans.push_back(temp);
@@ -297,7 +296,7 @@ void ZombieScene::loadScene()
 	}
 
 	this->zombify(this->humans.at(0));
-	game->textureObject(this->humans.at(0), PATH"ZombieGame/Resources/Textures/zombie.png");
+	game->textureObject(this->humans.at(0), "Resources/Textures/zombie.png");
 	zombieTexture = this->humans.at(0)->texture;
 	this->humans.at(0)->Zombify();
 
@@ -307,13 +306,13 @@ void ZombieScene::loadScene()
 
 	Pointer* pointer = new Pointer();
 	this->addObject(pointer);
-	this->game->textureObject(pointer, PATH"ZombieGame/Resources/Textures/pointer.png");
+	this->game->textureObject(pointer, "Resources/Textures/pointer.png");
 	
 	this->addLogic(new AimPointer(&this->world, player, pointer, mouse, camera, this->killCount, 8));
 	this->addLogic(new WinCondition(this->zombieCount, this->killCount, endScene));
 
 	//Puts player on top
-	game->textureObject(player, PATH"ZombieGame/Resources/Textures/player.png");
+	game->textureObject(player, "Resources/Textures/player.png");
 	this->addReactive(player, &humanBodyDef);
 	player->setPosition(200, 200);
 	//Will hijack player for now

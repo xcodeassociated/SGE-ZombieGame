@@ -6,30 +6,35 @@
 //  Copyright © 2016 Hamashy. All rights reserved.
 //
 #include <iostream>
+#include <boost/filesystem.hpp>
 
 #include <Game/sge_game.hpp>
 #include <Game/Director/sge_director.hpp>
 #include <Scene/sge_scene.hpp>
 
-// todo: change!
-#include "sge_macro.hpp"
-
 #include "ZombieScene.hpp"
 #include "IntroScene.hpp"
 
+namespace fs = boost::filesystem;
+
 int main(int argc, char * argv[])
 {
+    (void)argc; (void)argv;
+
     std::cout.setf(std::ios::boolalpha);
     std::cout.sync_with_stdio(true);
+
+	const fs::path app_path = fs::system_complete(argv[0]).remove_filename();
+	const fs::path shader_path = app_path / fs::path("shaders");
 
 	SGE::Director* director = SGE::Director::getDirector(1024, 768);
 	SGE::Game* game = SGE::Game::getGame();
 	game->bindDirector(director);
-	game->init(60);
+	game->init(60, shader_path.string());
 
-	ZombieScene* S1 = new ZombieScene(game, PATH"ZombieGame/Levels/level1.txt");
-	SGE::Scene* S0 = new IntroScene(S1, PATH"ZombieGame/Resources/Textures/zombie-game.png");
-	SGE::Scene* S2 = new EndScene(S1, PATH"ZombieGame/Resources/Textures/end-game.png");
+	ZombieScene* S1 = new ZombieScene(game, "Levels/level1.txt");
+	SGE::Scene* S0 = new IntroScene(S1, "Resources/Textures/zombie-game.png");
+	SGE::Scene* S2 = new EndScene(S1, "Resources/Textures/end-game.png");
 	
 	S1->endScene = S2;
 
