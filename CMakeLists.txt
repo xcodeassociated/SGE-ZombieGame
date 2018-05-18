@@ -8,6 +8,8 @@ include(CMakeModules/sge_debug_info.cmake)
 option(PACKAGE_MANAGER "Default project package manager default: NONE" NONE)
 option(SGE_ROOT "SGE install directory" NONE)
 option(INCLUDE_ENGINE_PROJECT "If enabled includes SGE as subproject" OFF)
+option(COPY_SHADERS "If the SGE was not included as sub-project settig this option will copy GLSL files into CMAKE_RUNTIME_OUTPUT_DIRECTORY" OFF)
+option(COPY_GAME_RESOURCES "If enabled copies game resources into CMAKE_RUNTIME_OUTPUT_DIRECTORY" OFF)
 option(SETUP_BUILD_DIR "Setup project libs path" NONE)
 option(CMAKE_TOOLCHAIN_FILE "CMake toolchain file defines build configuration" NONE)
 
