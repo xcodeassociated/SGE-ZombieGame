@@ -192,7 +192,9 @@ void ZombieScene::zombify(Human* human)
 	human->addFixture(humanShape)->SetFilterData(zombieFilter);
 }
 
-ZombieScene::ZombieScene(SGE::Game* game, const char* path) : Box2DScene(b2Vec2_zero), game(game), path(path)
+ZombieScene::ZombieScene(SGE::Game* game, const char* path)
+		: Box2DScene(b2Vec2_zero), game(game),
+		  path([game](const char* path) { return game->getGamePath() + path; }(path))
 {
 	static bool initialized = init();
 }
@@ -202,10 +204,10 @@ void ZombieScene::loadScene()
 	this->killCount = 0;
 	this->zombieCount = 0;
 	std::map<char, std::string> mask = {
-		{ 'R', "Resources/Textures/red_bricks.png" },
-		{ 'B', "Resources/Textures/red_bricks.png" },
-		{ 'G', "Resources/Textures/glass.png" },
-		{ 'L', "Resources/Textures/light_bricks.png" }
+		{ 'R', {game->getGamePath() + "Resources/Textures/red_bricks.png"} },
+		{ 'B', {game->getGamePath() + "Resources/Textures/red_bricks.png"} },
+		{ 'G', {game->getGamePath() + "Resources/Textures/glass.png"} },
+		{ 'L', {game->getGamePath() + "Resources/Textures/light_bricks.png"} }
 	};
 	this->Scene::loadLevel(this->path.c_str(), mask);
 

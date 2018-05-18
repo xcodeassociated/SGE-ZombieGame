@@ -31,6 +31,7 @@ int main(int argc, char * argv[])
 	SGE::Game* game = SGE::Game::getGame();
 	game->bindDirector(director);
 	game->init(60, shader_path.string());
+	game->setGamePath({app_path.string() + '/'});
 
 	ZombieScene* S1 = new ZombieScene(game, "Levels/level1.txt");
 	SGE::Scene* S0 = new IntroScene(S1, "Resources/Textures/zombie-game.png");
