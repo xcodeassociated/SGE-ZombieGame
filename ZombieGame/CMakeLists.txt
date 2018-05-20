@@ -61,24 +61,38 @@ if (INCLUDE_ENGINE_PROJECT)
 	get_filename_component(SGE_RELATIVE_PARENT ${CMAKE_CURRENT_SOURCE_DIR} PATH)
 	set(GLSL_DIR "${SGE_RELATIVE_PARENT}/SGE/SimpleGameEngine/Renderer/Shaders/res")
 
+	add_custom_command(TARGET ${PROJECT_NAME} 
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E 
+			make_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
 	add_custom_command(TARGET ${PROJECT_NAME}
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E
-			make_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders)
+			copy ${GLSL_DIR}/colorShader.frag ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
 	add_custom_command(TARGET ${PROJECT_NAME}
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E
-			copy ${GLSL_DIR}/* ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
+			copy ${GLSL_DIR}/colorShader.vert ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
+
 elseif(COPY_SHADERS)
+
 	if (NOT SGE_ROOT)
 		message(WARNING "SGE_ROOT not provided, cannot copy SGE shaders.")
 	else()
 		set(GLSL_DIR ${SGE_ROOT}/include/Renderer/Shaders/res)
 
+		add_custom_command(TARGET ${PROJECT_NAME} 
+				POST_BUILD
+				COMMAND ${CMAKE_COMMAND} -E 
+				make_directory${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
 		add_custom_command(TARGET ${PROJECT_NAME}
 				POST_BUILD
 				COMMAND ${CMAKE_COMMAND} -E
-				copy_directory ${GLSL_DIR} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
+				copy ${GLSL_DIR}/colorShader.frag ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
+		add_custom_command(TARGET ${PROJECT_NAME}
+				POST_BUILD
+				COMMAND ${CMAKE_COMMAND} -E
+				copy ${GLSL_DIR}/colorShader.vert ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shaders/)
 	endif()
 endif()
 
