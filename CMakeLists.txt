@@ -101,10 +101,6 @@ elseif()
 
 	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SGE-ZombieGame)
 	link_directories("${CMAKE_CURRENT_BINARY_DIR}/lib")
-
-	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Logic_lib")
-	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/Utils_lib")
-	include_directories("${CMAKE_CURRENT_BINARY_DIR}/SimpleGameEngine/ThirdParty_Librarys/Box2D")
 endif()
 
 message(STATUS "Using PACKAGE_MANAGER: ${PACKAGE_MANAGER}")
