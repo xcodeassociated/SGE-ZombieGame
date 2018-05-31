@@ -1,18 +1,18 @@
+set(GAME_SOURCE_FILES main.cpp
+		GameCode/Actions.cpp
+		GameCode/Actions.hpp
+		GameCode/Logics.cpp
+		GameCode/Logics.hpp
+		GameCode/Objects.cpp
+		GameCode/Objects.hpp
+		GameCode/ZombieScene.cpp
+		GameCode/ZombieScene.hpp
+		GameCode/IntroScene.cpp
+		GameCode/IntroScene.hpp)
+
+add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
+
 if (NOT INCLUDE_ENGINE_PROJECT)
-	set(GAME_SOURCE_FILES main.cpp
-			Actions.cpp
-			Actions.hpp
-			Logics.cpp
-			Logics.hpp
-			Objects.cpp
-			Objects.hpp
-			ZombieScene.cpp
-			ZombieScene.hpp
-			IntroScene.cpp
-			IntroScene.hpp)
-
-	add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
-
 	target_link_libraries(${PROJECT_NAME}
 		${SGE_LIBRARIES}
 		${Boost_LIBRARIES}
@@ -21,20 +21,6 @@ if (NOT INCLUDE_ENGINE_PROJECT)
 		${OPENGL_LIBRARIES}
 		${GLM_LIBRARIES})
 else()
-	set(GAME_SOURCE_FILES main.cpp
-		Actions.cpp
-		Actions.hpp
-		Logics.cpp
-		Logics.hpp
-		Objects.cpp
-		Objects.hpp
-		ZombieScene.cpp
-		ZombieScene.hpp
-		IntroScene.cpp
-		IntroScene.hpp)
-
-	add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
-
 	target_link_libraries(${PROJECT_NAME}
 
 		${Boost_LIBRARIES}
@@ -100,10 +86,10 @@ if (COPY_GAME_RESOURCES)
 	add_custom_command(TARGET ${PROJECT_NAME}
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E
-			copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Resources)
+			copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Data/Resources ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Resources)
 
 	add_custom_command(TARGET ${PROJECT_NAME}
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E
-			copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Levels ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Levels)
+			copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Data/Levels ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Levels)
 endif()
