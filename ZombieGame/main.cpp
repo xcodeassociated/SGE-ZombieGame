@@ -181,7 +181,7 @@ int main(int argc, char * argv[])
         CallbackManager callbackManager;
 		registry.construction<c_Velocity>().connect<CallbackManager, &CallbackManager::velocity_create_callback>(&callbackManager);
 
-		dissconnect `c_Velocity` create callback function (uncomment)
+		// dissconnect `c_Velocity` create callback function (uncomment)
 		registry.construction<c_Velocity>().disconnect<&velocity_create_callback>();
 #endif
 
