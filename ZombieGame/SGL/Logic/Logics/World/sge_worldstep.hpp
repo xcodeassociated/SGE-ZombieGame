@@ -11,6 +11,7 @@ namespace SGE
 		b2World* world;
 		int vel = 8;
 		int pos = 3;
+
 	public:
 		explicit WorldStep(b2World*) noexcept;
 		WorldStep(b2World*,int,int) noexcept;

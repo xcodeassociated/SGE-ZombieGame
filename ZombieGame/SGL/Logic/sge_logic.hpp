@@ -19,7 +19,7 @@
 	#define LOGIC_EXPORT
 #endif
 
-#include "../Object/sge_logic_priority.hpp"
+#include "sge_logic_priority.hpp"
 
 
 class DynamicVectorLogic;
@@ -28,15 +28,10 @@ namespace SGE
 {
 	class Logic;
 	class Action;
-	class Object;
 	class ActionHandler;
-	class Game;
 
     class Logic
 	{
-		friend class Game;
-		friend class DynamicVectorLogic;
-
 	public:
 		using Priority = LogicPriority;
 

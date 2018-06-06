@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 
-# Compiled Object files
+# Compiled Sprite files
 *.slo
 *.lo
 *.o
@@ -30,10 +30,6 @@
 *.exe
 *.out
 *.app
-
-# Engine directory
-#     SGE default install path
-ZombieGame/SGE/
 
 # ECS entt
 

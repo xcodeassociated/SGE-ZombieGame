@@ -1,5 +1,5 @@
 #include "sge_box2dscene.hpp"
-#include "../Object/Reactive/sge_reactive.hpp"
+#include "../../Reactive/sge_reactive.hpp"
 
 SGE::Box2DScene::Box2DScene(const b2Vec2& gravity) : world(gravity)
 {

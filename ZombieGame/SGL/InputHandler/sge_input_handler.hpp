@@ -12,9 +12,8 @@
 #include <unordered_map>
 #include <glm/glm.hpp>
 
-#include "../../IO/Key/sge_key.hpp"
+#include "IO/Key/sge_key.hpp"
 #include "../ActionHandler/sge_action_handler.hpp"
-#include "../../Action/sge_action.hpp"
 
 namespace SGE
 {
@@ -22,12 +21,10 @@ namespace SGE
     class InputManager;
     class MouseObject;
     class InputBinder;
+	class Action;
 
     class InputHandler {
-        Game* game = nullptr;
-
         InputManager* input_manager = nullptr;
-
         std::unordered_map <Key, Action*, KeyHashAlias<Key>> keyMap;
 
         void pressKey(Key k);

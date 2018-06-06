@@ -1,9 +1,8 @@
 #include "sge_input_handler.hpp"
-#include "../sge_game.hpp"
-#include "../../IO/InputManager/sge_input_manager.hpp"
-#include "../../IO/Mouse/sge_mouse.hpp"
+#include "IO/InputManager/sge_input_manager.hpp"
+#include "IO/Mouse/sge_mouse.hpp"
 #include "sge_input_binder.hpp"
-#include "../../Action/sge_action.hpp"
+#include "../Action/sge_action.hpp"
 
 #include <glm/glm.hpp>
 

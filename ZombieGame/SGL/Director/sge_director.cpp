@@ -1,11 +1,7 @@
+#include "sge_director.hpp"
+
 #include <algorithm>
 #include <iostream>
-
-#include "sge_director.hpp"
-#include "../sge_game.hpp"
-
-std::shared_ptr<SGE::Logger> SGE::Director::logger = LoggerFactory::create_logger("Director");
-std::shared_ptr<SGE::LoggerError> SGE::Director::logger_err = LoggerFactory::create_logger_error("Director_ERROR");
 
 SGE::Director::Director(int w, int h): Width(w), Height(h)
 {
@@ -43,7 +39,6 @@ void SGE::Director::deleteScene(Scene* scene)
 
 void SGE::Director::finalize()
 {
-	*logger << "Director Finalize method invoked" << std::endl;
 }
 
 void SGE::Director::bindGame(Game* game)

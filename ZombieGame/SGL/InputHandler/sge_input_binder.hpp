@@ -5,7 +5,7 @@
 #ifndef SGE_ZOMBIEGAME_SGE_INPUT_BINDER_HPP
 #define SGE_ZOMBIEGAME_SGE_INPUT_BINDER_HPP
 
-#include "../../IO/Key/sge_key.hpp"
+#include "IO/Key/sge_key.hpp"
 
 namespace SGE
 {

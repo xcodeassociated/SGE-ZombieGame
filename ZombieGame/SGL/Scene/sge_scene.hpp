@@ -5,7 +5,7 @@
 #include <map>
 #include "../Level/sge_level.hpp"
 #include "../Logic/sge_logic.hpp"
-#include "../Scene/sge_scene_state.hpp"
+#include "sge_scene_state.hpp"
 
 namespace SGE
 {
@@ -15,16 +15,14 @@ namespace SGE
     class Scene
     {
     public:
-        using ObjectVector = std::vector<Object*>;
-        using LogicVector = std::vector<Logic*>;
+        using ObjectVector = std::vector<Object*>; // ecs
+        using LogicVector = std::vector<Logic*>; // ecs
         using ActionVector = std::vector<Action*>;
+
     protected:
 		Level level;
-
 		LogicVector logics;
-
         ActionVector actions;
-
         ObjectVector objects;
 	    
     public:
@@ -34,7 +32,6 @@ namespace SGE
 		bool TextureLoaded = false;
 
 	    LogicVector& getLogics();
-
         ActionVector& getActions();
 
 		virtual ~Scene() = default;

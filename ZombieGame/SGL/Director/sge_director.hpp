@@ -3,28 +3,21 @@
 
 #include <vector>
 #include <memory>
-#include "../../Logic/sge_logic.hpp"
-#include "../../Scene/sge_scene.hpp"
-#include "../../Utils/Logger/sge_logger.hpp"
+#include "../Logic/sge_logic.hpp"
+#include "../Scene/sge_scene.hpp"
 
 namespace SGE
 {
     class Director final
     {
-		static std::shared_ptr<Logger> logger;
-        static std::shared_ptr<LoggerError> logger_err;
-
-		Game* game = nullptr;
-
 		int Width = 0;
-
 		int Height = 0;
 
 	    Scene* nextScene = nullptr;
 
 	    Director(int w, int h);
 	 
-	    ~Director(); //Will prevent user form deleting Director, should be useful with ARC system in place.
+	    virtual ~Director(); //Will prevent user form deleting Director, should be useful with ARC system in place.
 		
 		std::vector<Scene*> scenes;
 

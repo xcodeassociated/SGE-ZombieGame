@@ -1,6 +1,6 @@
 #include "sge_action_handler.hpp"
-#include "../../Action/sge_action.hpp"
-#include "../../Logic/sge_logic.hpp"
+#include "../Action/sge_action.hpp"
+#include "../Logic/sge_logic.hpp"
 
 SGE::ActionHandler::ActionHandler()
 {
@@ -23,16 +23,16 @@ void SGE::ActionHandler::addAction(Action* a)
 	this->actions->push_back(a);
 }
 
-void SGE::ActionHandler::performSingleAction(Action* action, LogicPriority priority)
+void SGE::ActionHandler::performSingleAction(Action* action)//, LogicPriority priority)
 {
-	if (priority == LogicPriority::Highest)
-	{
+//	if (priority == LogicPriority::Highest)
+//	{
 		this->triggerActionSingle(action);
-	}
-	else
-	{
-		this->addAction(action);
-	}
+//	}
+//	else
+//	{
+//		this->addAction(action);
+//	}
 }
 
 std::vector<SGE::Action*>& SGE::ActionHandler::getActions()

@@ -1,7 +1,7 @@
 #include "sge_logic_camera_zoom.hpp"
-#include "../../../IO/KeyBoardState/sge_keyboard_state.hpp"
-#include "../../../Object/Camera2d/sge_camera2d.hpp"
-#include "../../../Utils/Timing/sge_fps_limiter.hpp"
+#include "IO/KeyBoardState/sge_keyboard_state.hpp"
+#include "Camera2d/sge_camera2d.hpp"
+#include "Utils/Timing/sge_fps_limiter.hpp"
 
 SGE::Logics::CameraZoom::CameraZoom(Camera2d* camera, const float speed, const float min, const float max, const SGE::Key in, const SGE::Key out)
 		: Logic(LogicPriority::Highest), cameraObject(camera), speed(speed), minZoom(min), maxZoom(max), zoomIn(in), zoomOut(out)

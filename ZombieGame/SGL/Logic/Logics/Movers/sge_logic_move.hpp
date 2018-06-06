@@ -2,7 +2,7 @@
 #define sge_logic_move_h
 
 #include "../../sge_logic.hpp"
-#include "../../../IO/Key/sge_key.hpp"
+#include "IO/Key/sge_key.hpp"
 
 namespace SGE
 {

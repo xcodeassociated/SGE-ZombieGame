@@ -22,7 +22,6 @@ namespace SGE
 			Object* object = nullptr;
 
 	        float destX = 0;
-	    
 	        float destY = 0;
 
         public:

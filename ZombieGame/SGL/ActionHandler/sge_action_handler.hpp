@@ -28,7 +28,7 @@ namespace SGE
 
 	    explicit ActionHandler();
 
-	    void performSingleAction(Action* action, LogicPriority priority);
+	    void performSingleAction(Action* action);//, LogicPriority priority);
 
 		void setActions(std::vector<Action*>& actionsVec); //TODO: this method has tobe triggered when swapping scene
 
