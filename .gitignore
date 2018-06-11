@@ -57,7 +57,11 @@ conan_imports_manifest.txt
 /Setup/build/*
 /CppProperties.json
 
-#default local setup project libs
+# default local setup project libs
 setup
 
+# cmake files 
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
 
