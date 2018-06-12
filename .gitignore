@@ -60,8 +60,11 @@ conan_imports_manifest.txt
 # default local setup project libs
 setup
 
-# cmake files 
+# cmake files
 CMakeCache.txt
 CMakeFiles/
 compile_commands.json
+
+# vs code
+.vscode
 
