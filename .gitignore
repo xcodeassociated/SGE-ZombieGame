@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 
-# Compiled Sprite files
+# Compiled Object files
 *.slo
 *.lo
 *.o
@@ -31,6 +31,10 @@
 *.out
 *.app
 
+# Engine directory
+#     SGE default install path
+ZombieGame/SGE/
+
 # ECS entt
 
 # idea Clion
@@ -53,7 +57,14 @@ conan_imports_manifest.txt
 /Setup/build/*
 /CppProperties.json
 
-#default local setup project libs
+# default local setup project libs
 setup
 
+# cmake files
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# vs code
+.vscode
 
