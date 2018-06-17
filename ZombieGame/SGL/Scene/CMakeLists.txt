@@ -1,9 +1,9 @@
 set (SceneSOURCES
-		sge_scene_state.hpp
-		sge_scene.hpp
-		sge_scene.cpp
-		sge_box2dscene.hpp
-		sge_box2dscene.cpp)
+		sgl_scene_state.hpp
+		sgl_scene.hpp
+		sgl_scene.cpp
+		sgl_box2dscene.hpp
+		sgl_box2dscene.cpp)
 
 add_library (Scene
 		${SceneSOURCES})
