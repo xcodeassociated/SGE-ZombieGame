@@ -5,7 +5,7 @@
 #ifndef SGE_LOGIC_PRIORITY_HPP
 #define SGE_LOGIC_PRIORITY_HPP
 
-namespace SGE
+namespace SGL
 {
     enum class LogicPriority : int
     {

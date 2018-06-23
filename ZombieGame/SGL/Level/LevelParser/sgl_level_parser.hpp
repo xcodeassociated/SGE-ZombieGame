@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "../sge_level.hpp"
+#include "../sgl_level.hpp"
 
 namespace SGE
 {

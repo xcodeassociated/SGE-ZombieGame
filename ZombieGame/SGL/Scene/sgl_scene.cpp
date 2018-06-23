@@ -1,5 +1,5 @@
-#include "sge_scene.hpp"
-#include "../Level/LevelParser/sge_level_parser.hpp"
+#include "sgl_scene.hpp"
+#include "../Level/LevelParser/sgl_level_parser.hpp"
 #include <stdexcept>
 #include <algorithm>
 

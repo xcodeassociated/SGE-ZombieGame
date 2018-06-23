@@ -1,7 +1,7 @@
 #ifndef sge_action_h
 #define sge_action_h
 
-namespace SGE
+namespace SGL
 {
 	class Action
 	{

@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <map>
-#include "../Level/sge_level.hpp"
-#include "../Logic/sge_logic.hpp"
+#include "../Level/sgl_level.hpp"
+#include "../Logic/sgl_logic.hpp"
 #include "sge_scene_state.hpp"
 
 namespace SGE

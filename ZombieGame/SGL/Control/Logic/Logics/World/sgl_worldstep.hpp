@@ -1,10 +1,10 @@
 #ifndef SGE_WORLDSTEP
 #define SGE_WORLDSTEP
 
-#include "../../../Box2D/Dynamics/b2World.h"
-#include "../../sge_logic.hpp"
+#include "../../Box2D/Dynamics/b2World.h"
+#include "../sgl_logic.hpp"
 
-namespace SGE
+namespace SGL
 {
 	class WorldStep : public Logic
 	{

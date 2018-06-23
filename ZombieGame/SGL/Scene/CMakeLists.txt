@@ -5,13 +5,11 @@ set (SceneSOURCES
 		sgl_box2dscene.hpp
 		sgl_box2dscene.cpp)
 
-add_library (Scene
-		${SceneSOURCES})
+add_library (Scene ${SceneSOURCES})
 
 target_link_libraries(Scene 
-		Object
-		Level
-		Logic
+		Sprite
+		Control
 		Utils
 		Box2D)
 

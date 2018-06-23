@@ -9,9 +9,9 @@
 #ifndef sge_action_move_h
 #define sge_action_move_h
 
-#include "../sge_action.hpp"
+#include "../sgl_action.hpp"
 
-namespace SGE
+namespace SGL
 {
 	class Object;
 
@@ -29,9 +29,7 @@ namespace SGE
 
 		private:
 	        virtual void action_begin() noexcept override;
-
 	        virtual void action_main() noexcept override;
-
 	        virtual void action_ends() noexcept override;
         };
     }

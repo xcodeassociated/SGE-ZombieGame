@@ -1,10 +1,10 @@
 #ifndef sge_logic_camera_zoom_h
 #define sge_logic_camera_zoom_h
 
-#include "../../sge_logic.hpp"
+#include "../sge_logic.hpp"
 #include "IO/Key/sge_key.hpp"
 
-namespace SGE
+namespace SGL
 {
 	class Camera2d;
 

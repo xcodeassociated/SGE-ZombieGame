@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include "../Logic/sge_logic.hpp"
-#include "../Scene/sge_scene.hpp"
+#include "../Scene/sgl_scene.hpp"
 
 namespace SGE
 {

@@ -24,11 +24,10 @@
 
 class DynamicVectorLogic;
 
-namespace SGE
+namespace SGL
 {
 	class Logic;
 	class Action;
-	class ActionHandler;
 
     class Logic
 	{
@@ -38,8 +37,6 @@ namespace SGE
         virtual void performLogic() = 0;
 
     protected:
-		static LOGIC_EXPORT ActionHandler* action_handler;
-
 	    explicit Logic(Priority _p);
 
         bool isOn = true;
@@ -52,9 +49,7 @@ namespace SGE
 	    Priority getPriority() const;
 
 	    virtual void setOn(bool e) final;
-
 	    virtual bool getOn() final;
-
 	    virtual void toggleOn() final;
 
         virtual ~Logic() = 0;

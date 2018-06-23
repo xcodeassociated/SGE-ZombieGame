@@ -2,7 +2,7 @@
 // Created by Janusz Majchrzak on 30/10/2017.
 //
 
-#include "sge_input_binder.hpp"
+#include "sgl_input_binder.hpp"
 
 SGE::InputBinder::InputBinder(Action* action, Key key) : action(action), key(key)
 {

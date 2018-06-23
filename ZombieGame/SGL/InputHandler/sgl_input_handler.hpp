@@ -13,11 +13,9 @@
 #include <glm/glm.hpp>
 
 #include "IO/Key/sge_key.hpp"
-#include "../ActionHandler/sge_action_handler.hpp"
 
 namespace SGE
 {
-    class Game;
     class InputManager;
     class MouseObject;
     class InputBinder;

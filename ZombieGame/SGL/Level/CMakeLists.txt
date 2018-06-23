@@ -11,5 +11,7 @@ add_library (Level
 		${LevelParserSOURCES})
 
 target_link_libraries(Level
-		Object
+		Sprite
 		Utils)
+
+install(TARGETS Level DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")

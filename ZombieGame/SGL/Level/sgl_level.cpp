@@ -1,4 +1,4 @@
-#include "sge_level.hpp"
+#include "sgl_level.hpp"
 
 SGE::Level::Level(size_t x, size_t y): height(y), width(x)
 {
