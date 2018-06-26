@@ -1,6 +1,3 @@
 [submodule "SGE"]
 	path = SGE
 	url = https://github.com/xcodeassociated/SGE.git
-[submodule "entt"]
-	path = entt
-	url = https://github.com/skypjack/entt.git
