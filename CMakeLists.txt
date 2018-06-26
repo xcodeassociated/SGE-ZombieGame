@@ -66,12 +66,17 @@ if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
-    if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-        message(STATUS "Linux")
+		if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+			message(STATUS "Linux")
 
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fext-numeric-literals -pthread -ldl")
-        set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -fext-numeric-literals -pthread -ldl")
-    
+			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -ldl -fPIC")
+			set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -pthread -ldl -fPIC")
+
+			if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+					set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fext-numeric-literals")
+					set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -fext-numeric-literals")
+			endif()
+			
 	elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message(STATUS "Darwin")
 
@@ -79,13 +84,13 @@ if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	endif()
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g3")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
-    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O3")
+    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O3 -g")
 
-	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+		set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g3")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
-    set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -O3")
+    set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -O3 -g")
 else()
 	message (STATUS "MSVC ${MSVC_VERSION}v")
 
