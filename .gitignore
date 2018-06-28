@@ -68,3 +68,4 @@ compile_commands.json
 # vs code
 .vscode
 
+.DS_Store
