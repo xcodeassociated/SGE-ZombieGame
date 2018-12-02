@@ -42,7 +42,7 @@ int main(int argc, char * argv[])
 	S1->endScene = S2;
 
 	director->addScene(S0);
-	director->addScene(S1);
+	director->addScene((SGE::Scene*)S1);
 	director->addScene(S2);
 
 	director->setNextScene(S0);
@@ -50,7 +50,7 @@ int main(int argc, char * argv[])
 	game->run();
 
 	director->deleteScene(S0);
-	director->deleteScene(S1);
+	director->deleteScene((SGE::Scene*)S1);
 	director->deleteScene(S2);
 
 	game->finalize();
