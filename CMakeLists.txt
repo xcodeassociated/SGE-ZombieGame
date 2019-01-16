@@ -49,7 +49,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/$<CONFIG>")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
 
 if (NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type selected -- default is Debug")
@@ -181,11 +182,24 @@ else()
 	endif()
 endif()
 
+### temporary solution - todo: findSGL module 
+### SGL depends on SGE so it has to be included AFTER SGE
+set (SGL_DIR "SGL")
+include_directories(${SGL_DIR})
+include_directories("${SGL_DIR}/Box2D")
+include_directories("${SGL_DIR}/Control")
+include_directories("${SGL_DIR}/InputBinder")
+include_directories("${SGL_DIR}/PhysicsComponent")
+add_subdirectory(${SGL_DIR})
+###
+
 if (NOT ENTT_ROOT)
 	message("ENTT_ROOT not specified, setting defult: ${CMAKE_SOURCE_DIR}/entt")
-	set(ENTT_ROOT "${CMAKE_SOURCE_DIR}/entt/")
+	set(ENTT_ROOT "${CMAKE_SOURCE_DIR}/entt")
 endif()
+
 message(STATUS "entt added to include_directories")
 add_subdirectory(${ENTT_ROOT})
+include_directories("${ENTT_ROOT}/src")
 
 add_subdirectory(ZombieGame)

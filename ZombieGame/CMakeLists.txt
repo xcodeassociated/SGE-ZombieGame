@@ -1,14 +1,21 @@
-set(GAME_SOURCE_FILES main.cpp
-		GameCode/Actions.cpp
-		GameCode/Actions.hpp
-		GameCode/Logics.cpp
-		GameCode/Logics.hpp
-		GameCode/Objects.cpp
-		GameCode/Objects.hpp
-		GameCode/ZombieScene.cpp
-		GameCode/ZombieScene.hpp
-		GameCode/IntroScene.cpp
-		GameCode/IntroScene.hpp)
+add_subdirectory(Director)
+add_subdirectory(Level)
+add_subdirectory(Scene)
+
+set(GAME_SOURCE_FILES 
+		# GameActions/Actions.cpp
+		# GameActions/Actions.hpp
+		# GameLogics/Logics.cpp
+		# GameLogics/Logics.hpp
+		# GameObjects/Objects.cpp
+		# GameObjects/Objects.hpp
+		# GameScenes/ZombieScene.cpp
+		# GameScenes/ZombieScene.hpp
+		# GameScenes/IntroScene.cpp
+		# GameScenes/IntroScene.hpp
+		# GameScenes/EndScene.cpp
+		# GameScenes/EndScene.hpp
+		main.cpp)
 
 add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
 
@@ -22,21 +29,16 @@ if (NOT INCLUDE_ENGINE_PROJECT)
 		${GLM_LIBRARIES})
 else()
 	target_link_libraries(${PROJECT_NAME}
-
 		${Boost_LIBRARIES}
 		${SDL2_LIBRARY}
 		${GLEW_LIBRARIES}
 		${OPENGL_LIBRARIES}
 		${GLM_LIBRARIES}
-
-		Action
-		ActionHandler
+		Control
 		IO
+		InputSystem
 		Level
-		Logic
-		Object
-		Game
-		Renderer
+		RenderSystem
 		Scene
 		Utils
 		PicoPNG
@@ -45,7 +47,7 @@ endif()
 
 if (INCLUDE_ENGINE_PROJECT)
 	get_filename_component(SGE_RELATIVE_PARENT ${CMAKE_CURRENT_SOURCE_DIR} PATH)
-	set(GLSL_DIR "${SGE_RELATIVE_PARENT}/SGE/SimpleGameEngine/Renderer/Shaders/res")
+	set(GLSL_DIR "${SGE_RELATIVE_PARENT}/SGE/SimpleGameEngine/RenderSystem/Shaders/res")
 
 	add_custom_command(TARGET ${PROJECT_NAME} 
 			POST_BUILD
@@ -65,7 +67,7 @@ elseif(COPY_SHADERS)
 	if (NOT SGE_ROOT)
 		message(WARNING "SGE_ROOT not provided, cannot copy SGE shaders.")
 	else()
-		set(GLSL_DIR ${SGE_ROOT}/include/Renderer/Shaders/res)
+		set(GLSL_DIR "${SGE_ROOT}/include/RenderSystem/Shaders/res")
 
 		add_custom_command(TARGET ${PROJECT_NAME} 
 				POST_BUILD

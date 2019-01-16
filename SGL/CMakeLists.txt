@@ -1,0 +1,5 @@
+add_subdirectory(Box2D)
+add_subdirectory(Control)
+add_subdirectory(InputBinder)
+add_subdirectory(InputSystem)
+add_subdirectory(PhysicsComponent)
