@@ -1,5 +1,5 @@
 #include "sgl_logic_camera_zoom.hpp"
-#include "IO/KeyBoardState/sge_keyboard_state.hpp"
+#include "IO/KeyboardState/sge_keyboard_state.hpp"
 #include "Camera2d/sge_camera2d.hpp"
 #include "Utils/Timing/sge_fps_limiter.hpp"
 

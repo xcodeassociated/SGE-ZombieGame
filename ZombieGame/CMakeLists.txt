@@ -2,6 +2,7 @@ add_subdirectory(Director)
 add_subdirectory(Level)
 add_subdirectory(Scene)
 
+# todo: add rest of game libs
 set(GAME_SOURCE_FILES 
 		# GameActions/Actions.cpp
 		# GameActions/Actions.hpp
