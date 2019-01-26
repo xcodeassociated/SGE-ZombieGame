@@ -20,7 +20,7 @@
 #define B2_MATH_H
 
 #ifdef _WIN32
-	#ifdef SGE_SHARED
+	#ifdef SHARED
 		#include <box2d_export.h>
 	#else
 		#define BOX2D_EXPORT

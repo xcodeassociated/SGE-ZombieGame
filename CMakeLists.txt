@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(ZombieGame)
 
+set(MASTER_BUILD_TYPES "Debug Release RelWithDebInfo MinSizeRel")
+string(REPLACE " " ";" MASTER_BUILD_TYPES_AVAILABLE ${MASTER_BUILD_TYPES})
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${MASTER_BUILD_TYPES_AVAILABLE})
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 include(CMakeModules/sge_debug_info.cmake)
@@ -13,10 +17,6 @@ option(COPY_SHADERS "If the SGE was not included as sub-project settig this opti
 option(COPY_GAME_RESOURCES "If enabled copies game resources into CMAKE_RUNTIME_OUTPUT_DIRECTORY" OFF)
 option(SETUP_BUILD_DIR "Setup project libs path" NONE)
 option(CMAKE_TOOLCHAIN_FILE "CMake toolchain file defines build configuration" NONE)
-
-set(MASTER_BUILD_TYPES "Debug Release RelWithDebInfo MinSizeRel")
-string(REPLACE " " ";" MASTER_BUILD_TYPES_AVAILABLE ${MASTER_BUILD_TYPES})
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${MASTER_BUILD_TYPES_AVAILABLE})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -60,7 +60,7 @@ message(STATUS "BUILD TYPE: ${CMAKE_BUILD_TYPE}")
 
 if (BUILD_SHARED_LIBS AND WIN32)
 	message(STATUS "BUILD_SHARED_LIBS is ON. Adding compiler defintion.")
-	add_definitions(-DSGE_SHARED)
+	add_definitions(-DSHARED)
 endif()
 
 if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
@@ -91,6 +91,9 @@ else()
 	message (STATUS "MSVC ${MSVC_VERSION}v")
 
 	set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+	## work around for c++17/20 optional feature
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
 
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Od /DEBUG /W2")
@@ -157,11 +160,7 @@ endif()
 include(CMakeModules/sge_status.cmake)
 
 set(SGE_DIR "SGE/SimpleGameEngine")
-
 if (INCLUDE_ENGINE_PROJECT)
-	if (WIN32 AND BUILD_SHARED_LIBS)
-		include_directories(${CMAKE_BINARY_DIR}/exports)
-	endif()
 	include_directories(${SGE_DIR})
 	add_subdirectory(${SGE_DIR})
 else()
@@ -179,6 +178,10 @@ else()
 		message("SGE_LIBRARY_DIR: ${SGE_LIBRARY_DIR}")
 		message("SGE_LIBRARIES: ${SGE_LIBRARIES}")
 	endif()
+endif()
+
+if (WIN32 AND BUILD_SHARED_LIBS)
+	include_directories(${CMAKE_BINARY_DIR}/exports)
 endif()
 
 ### temporary solution - todo: findSGL module 

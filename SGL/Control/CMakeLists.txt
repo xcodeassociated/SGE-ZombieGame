@@ -37,7 +37,7 @@ target_link_libraries(Control
 		
 if(WIN32)
 	include(GenerateExportHeader)
-	generate_export_header(Logic EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/exports/logic_export.h)
+	generate_export_header(Control EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/exports/control_export.h)
 endif()
 
 install(TARGETS Control DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")

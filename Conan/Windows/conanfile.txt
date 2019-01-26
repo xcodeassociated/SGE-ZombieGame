@@ -1,0 +1,12 @@
+[requires]
+Boost/1.69.0@conan/stable
+glew/2.1.0@bincrafters/stable
+glm/0.9.9.1@g-truc/stable
+sdl2/2.0.9@bincrafters/stable
+
+[options]
+Boost:shared=True
+sdl2:shared=True
+
+[generators]
+cmake

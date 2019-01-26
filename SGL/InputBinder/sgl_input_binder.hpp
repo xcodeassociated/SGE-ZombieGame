@@ -5,6 +5,16 @@
 #ifndef SGE_ZOMBIEGAME_SGE_INPUT_BINDER_HPP
 #define SGE_ZOMBIEGAME_SGE_INPUT_BINDER_HPP
 
+#ifdef _WIN32
+	#ifdef SHARED
+		#include <input_binder_export.h>
+	#else
+		#define INPUT_BINDER_EXPORT
+	#endif
+#else
+	#define INPUT_BINDER_EXPORT
+#endif
+
 #include "IO/Key/sge_key.hpp"
 
 namespace SGL
