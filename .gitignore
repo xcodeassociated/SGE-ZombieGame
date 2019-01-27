@@ -68,4 +68,9 @@ compile_commands.json
 
 # vs code
 .vscode
+.favorites.json
+note.txt
+
+# infer 
+*infer*
 
