@@ -20,18 +20,17 @@
 namespace SGL
 {
     class Action;
-    using namespace SGE;
-
+    
     class InputBinder
     {
         Action* action = nullptr;
-        Key key;
+	    SGE::Key key;
 
     public:
-        InputBinder(Action* action, Key key);
+        InputBinder(Action* action, SGE::Key key);
 
         Action* getAction() const;
-        Key getKey() const;
+	    SGE::Key getKey() const;
     };
 
 }

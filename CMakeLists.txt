@@ -159,6 +159,10 @@ endif()
 
 include(CMakeModules/sge_status.cmake)
 
+if (WIN32 AND BUILD_SHARED_LIBS)
+	include_directories(${CMAKE_BINARY_DIR}/exports)
+endif()
+
 set(SGE_DIR "SGE/SimpleGameEngine")
 if (INCLUDE_ENGINE_PROJECT)
 	include_directories(${SGE_DIR})
@@ -180,10 +184,6 @@ else()
 	endif()
 endif()
 
-if (WIN32 AND BUILD_SHARED_LIBS)
-	include_directories(${CMAKE_BINARY_DIR}/exports)
-endif()
-
 ### temporary solution - todo: findSGL module 
 ### SGL depends on SGE so it has to be included AFTER SGE
 set (SGL_DIR "SGL")
@@ -194,6 +194,7 @@ include_directories("${SGL_DIR}/InputBinder")
 include_directories("${SGL_DIR}/PhysicsComponent")
 add_subdirectory(${SGL_DIR})
 ###
+
 
 if (NOT ENTT_ROOT)
 	message("ENTT_ROOT not specified, setting defult: ${CMAKE_SOURCE_DIR}/entt")

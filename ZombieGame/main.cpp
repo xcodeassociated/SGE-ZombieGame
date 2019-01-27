@@ -162,6 +162,9 @@ int main(int argc, char * argv[])
 {
     (void)argc;
     (void)argv;
+	
+	std::cout.setf(std::ios::boolalpha);
+	std::cout.sync_with_stdio(true);
 
 	/* <entt example> */
 	{
@@ -266,9 +269,6 @@ int main(int argc, char * argv[])
 	}
 	/* </entt_example> */
 
-    std::cout.setf(std::ios::boolalpha);
-    std::cout.sync_with_stdio(true);
-
 	// const fs::path app_path = fs::system_complete(argv[0]).remove_filename();
 	// const fs::path shader_path = app_path / fs::path("shaders");
 
@@ -299,5 +299,8 @@ int main(int argc, char * argv[])
 	// game->finalize();
 	// director->finalize();
 
+#ifdef _WINDOWS
+	system("pause");
+#endif
     return 0;
 }

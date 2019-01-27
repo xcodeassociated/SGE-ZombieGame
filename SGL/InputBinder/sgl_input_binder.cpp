@@ -4,7 +4,7 @@
 
 #include "sgl_input_binder.hpp"
 
-SGL::InputBinder::InputBinder(Action* action, Key key) : action(action), key(key)
+SGL::InputBinder::InputBinder(Action* action, SGE::Key key) : action(action), key(key)
 {
 }
 

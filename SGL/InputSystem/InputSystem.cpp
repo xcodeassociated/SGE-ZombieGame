@@ -67,7 +67,7 @@ void SGL::InputSystem::pollEvents() noexcept
 
 			case SDL_KEYDOWN:
 			{
-				this->pressKey(Key(event.key.keysym.sym));
+				this->pressKey(SGE::Key(event.key.keysym.sym));
 			}break;
 
 			case SDL_MOUSEMOTION:
@@ -78,7 +78,7 @@ void SGL::InputSystem::pollEvents() noexcept
 			case SDL_MOUSEBUTTONDOWN:
 			{
 				this->mouseHandler->setMouseCoords({ event.motion.x, event.motion.y });
-				this->pressKey(Key(-10));
+				this->pressKey(SGE::Key(-10));
 			}break;
 
 			case SDL_MOUSEBUTTONUP:

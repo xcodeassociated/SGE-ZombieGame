@@ -2,6 +2,7 @@
 #include "../Level/LevelParser/LevelParser.hpp"
 
 #include <stdexcept>
+#include <map>
 #include <algorithm>
 
 // Scene::LogicVector& Scene::getLogics()
@@ -28,7 +29,7 @@ void Scene::loadLevel(const char* path, std::map<char, std::string> levelMask)
 
 Level& Scene::getLevel()
 {
-	// return this->level;
+	return this->level;
 }
 
 void Scene::addObject(SGL::Object* object)

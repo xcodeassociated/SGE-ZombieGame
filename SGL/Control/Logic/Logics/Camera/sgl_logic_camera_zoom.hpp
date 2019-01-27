@@ -15,19 +15,18 @@ namespace SGL
 {
 	namespace Logics
 	{
-		using namespace SGE;
 		class CameraZoom : public Logic
 		{
-			Camera2d* cameraObject = nullptr;
+			SGE::Camera2d* cameraObject = nullptr;
 			float speed = 0.f;
 			float maxZoom = 0.f;
 			float minZoom = 0.f;
-			const Key zoomIn;
-			const Key zoomOut;
+			const SGE::Key zoomIn;
+			const SGE::Key zoomOut;
 
 		public:
 			using Logic::Logic;
-			CameraZoom(Camera2d* camera, const float speed, const float min, const float max, 
+			CameraZoom(SGE::Camera2d* camera, const float speed, const float min, const float max, 
 				const SGE::Key in, const SGE::Key out);
 			virtual ~CameraZoom() = default;
 
