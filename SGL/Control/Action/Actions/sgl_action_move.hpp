@@ -22,13 +22,13 @@ namespace SGL
 	{
         class Move : virtual public Action
 		{
-			Position position;
+			Position* position = nullptr;
 
 	        float destX = 0;
 	        float destY = 0;
 
         public:
-	        Move(Position && position, float _x, float _y, bool active);
+	        Move(Position* position, const float _x, const float _y, const bool active);
 
 		private:
 	        virtual void perform() override;        

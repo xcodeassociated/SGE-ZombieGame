@@ -6,9 +6,9 @@
 #include <glm/glm.hpp>
 #include <utility>
 
-SGL::Logics::SimpleMove::SimpleMove(Position && position, const float speed, const SGE::Key up, 
+SGL::Logics::SimpleMove::SimpleMove(Position* position, const float speed, const SGE::Key up, 
 	const SGE::Key down, const SGE::Key left, const SGE::Key right)
-        : Logic(LogicPriority::Highest), position(std::forward<Position>(position)), 
+        : Logic(LogicPriority::Highest), position(position), 
 			speed(speed), up(up), down(down), left(left), right(right)
 {
 }
@@ -27,6 +27,7 @@ std::optional<SGL::Action> SGL::Logics::SimpleMove::performLogic()
 	if (glm::vec2{ 0,0 } != move)
 	{
 		move *= delta_time;
-		return {SGL::ACTION::Move(std::forward<Position>(position), move.x, move.y, 0)};
+		return {SGL::ACTION::Move(position, move.x, move.y, 0)};
 	}
+	return {};
 }

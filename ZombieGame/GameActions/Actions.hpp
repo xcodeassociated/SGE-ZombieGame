@@ -4,18 +4,17 @@
 #include <Control/Action/sgl_action.hpp>
 #include <Control/Logic/sgl_logic.hpp>
 #include <IO/Mouse/sge_mouse.hpp>
+#include <Position/sge_position.hpp>
 #include "../Scene/Scene.hpp"
 
 class GOTO : public SGL::Action
 {
-	SGL::Object* object = nullptr;
+	SGE::Position* position = nullptr;
 
 public:
-	GOTO(SGL::Object* object);
+	GOTO(SGE::Position* position);
 
-	virtual void action_begin() noexcept override;
-	virtual void action_main() noexcept override;
-	virtual void action_ends() noexcept override;
+	virtual void perform() noexcept override;
 };
 
 class PortalAction : public SGL::Action
@@ -23,9 +22,7 @@ class PortalAction : public SGL::Action
 public:
 	PortalAction();
 
-	virtual void action_begin() override;
-	virtual void action_main() override;
-	virtual void action_ends() override;
+	virtual void perform() override;
 };
 
 class LogicSwitch : public SGL::Action
@@ -34,23 +31,17 @@ class LogicSwitch : public SGL::Action
 
 public:
 	LogicSwitch(SGL::Logic* id);
-
-	void action_begin() override;
-	void action_main() override;
-	void action_ends() override;
+	void perform() override;
 };
 
 class MouseClickedAction : public SGL::Action
 {
 	SGE::MouseObject* mouseObject = nullptr;
-	SGE::Object* player = nullptr;
+	SGE::Position* player = nullptr;
 
 public:
-	MouseClickedAction(SGE::MouseObject* mouseObject, SGL::Object* player);
-
-	virtual void action_begin() noexcept override;
-	virtual void action_ends() noexcept override;
-	virtual void action_main() noexcept override;
+	MouseClickedAction(SGE::MouseObject* mouseObject, SGE::Position* player);
+	virtual void perform() noexcept override;
 };
 
 class Load : public SGL::Action
@@ -59,10 +50,7 @@ class Load : public SGL::Action
 
 public:
 	explicit Load(Scene* scene);
-	void action_begin() override;
-	void action_main() override;
-	void action_ends() override;
-	
+	void perform() override;
 };
 
 #endif

@@ -2,14 +2,17 @@
 #include <iostream>
 #include <Camera2d/sge_camera2d.hpp>
 #include "../Director/Director.hpp"
+#include "../GameLogics/Logics.hpp"
 
-GOTO::GOTO(SGL::Object* object) : Action(false), object(object)
+GOTO::GOTO(SGE::Position* position) : Action(false), position(position)
 {
 }
 
-void GOTO::action_main() noexcept
+void GOTO::perform() noexcept
 {
-	this->object->setPosition(200, 200);
+	// default values...?
+	this->position->x = 200;
+	this->position->y = 200;
 	//NOTE: we don't want this action to be active forever
 }
 
@@ -17,39 +20,30 @@ PortalAction::PortalAction(): SGL::Action(false)
 {
 }
 
-void PortalAction::action_begin()
-{
-	std::cout << "portal::begin" << std::endl;
-}
-
-void PortalAction::action_main()
+void PortalAction::perform()
 {
 	std::cout << "portal::main" << std::endl;
 	//NOTE: we DON'T want this action to be active forever -- only when the logic condition form Portal is met
 }
 
-void PortalAction::action_ends()
-{
-	std::cout << "portal::end" << std::endl;
-}
 
 LogicSwitch::LogicSwitch(SGL::Logic* id) : SGL::Action(true), logic(id)
 {
 }
 
-void LogicSwitch::action_main()
+void LogicSwitch::perform()
 {
 	logic->toggleOn();
 	//NOTE: we want this action to be active forever
 }
 
 
-MouseClickedAction::MouseClickedAction(SGE::MouseObject* mouseObject, SGL::Object* player) 
+MouseClickedAction::MouseClickedAction(SGE::MouseObject* mouseObject, SGE::Position* playerPosition) 
 	: Action(true), mouseObject(mouseObject), player(player)
 {
 }
 
-void MouseClickedAction::action_main() noexcept
+void MouseClickedAction::perform() noexcept
 {
 	glm::vec2 coords = this->mouseObject->getMouseCoords();
 	glm::vec2 worldCoords = SGE::Game::getGame()->getCamera()->screenToWorld(coords);
@@ -63,42 +57,10 @@ Load::Load(SGE::Scene* scene) : nextScene(scene)
 {
 }
 
-void Load::action_begin()
-{
-}
 
-void Load::action_main()
+void Load::perform()
 {
 	auto d = Director::getDirector();
 	d->toNextScene(this->nextScene);
 	this->active = false;
-}
-
-void Load::action_ends()
-{
-}
-
-//TODO Make them normal virtual?
-void GOTO::action_begin() noexcept
-{
-}
-
-void GOTO::action_ends() noexcept
-{
-}
-
-void LogicSwitch::action_ends()
-{
-}
-
-void LogicSwitch::action_begin()
-{
-}
-
-void MouseClickedAction::action_begin() noexcept
-{
-}
-
-void MouseClickedAction::action_ends() noexcept
-{
 }

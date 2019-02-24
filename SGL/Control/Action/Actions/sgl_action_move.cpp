@@ -4,13 +4,13 @@
 #include <cassert>
 #include <utility>
 
-SGL::ACTION::Move::Move(Position && position, float _x, float _y, bool active) 
-	: SGL::Action(active), position(std::forward<Position>(position)), destX(_x), destY(_y)
+SGL::ACTION::Move::Move(Position* position, const float _x, const float _y, const bool active) 
+	: SGL::Action(active), position(position), destX(_x), destY(_y)
 {
 }
 
 void SGL::ACTION::Move::perform()
 {
-	position.x += this->destX;
-	position.y += this->destY;
+	position->x += this->destX;
+	position->y += this->destY;
 }

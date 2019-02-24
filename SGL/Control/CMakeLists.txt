@@ -6,6 +6,12 @@ set (LogicsCameraSOURCES
 		Logic/Logics/Camera/sgl_logic_camera_zoom.hpp
 		Logic/Logics/Camera/sgl_logic_camera_zoom.cpp)
 
+set (LogicsCollidersSOURCES
+		Logic/Logics/Colliders/sgl_logic_collide.hpp
+		Logic/Logics/Colliders/sgl_logic_collide.cpp
+		Logic/Logics/Colliders/sgl_logic_collide_basic.hpp
+		Logic/Logics/Colliders/sgl_logic_collide_basic.cpp)
+
 set (LogicMoversSOURCES
 		Logic/Logics/Movers/sgl_logic_move.hpp
 		Logic/Logics/Movers/sgl_logic_move.cpp)
@@ -22,6 +28,7 @@ set (ActionSOURCES
 
 add_library (Control
 		${LogicSOURCES}
+		${LogicsCollidersSOURCES}
 		${LogicsCameraSOURCES}
 		${LogicMoversSOURCES}
 		${LogicWorldSOURCES}

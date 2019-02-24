@@ -4,11 +4,11 @@
 #include <algorithm>
 #include <iostream>
 
-Director::Director(int w, int h): Width(w), Height(h)
+Director::Director(const int w, const int h) : Width(w), Height(h)
 {
 }
 
-Director* Director::getDirector(int w, int h)
+Director* Director::getDirector(const int w, const int h)
 {
 	static Director* director = new Director(w, h);
 	return director;

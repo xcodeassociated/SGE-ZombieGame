@@ -228,7 +228,7 @@ void SnapCamera::performLogic()
 	}
 }
 
-Timer::Timer(float time, SGE::Action* action) : Logic(SGE::LogicPriority::Low), time(time), action(action)
+Timer::Timer(float time, SGL::Action* action) : Logic(SGE::LogicPriority::Low), time(time), action(action)
 {
 }
 

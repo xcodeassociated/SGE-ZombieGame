@@ -1,8 +1,8 @@
-#ifndef sge_logic_camera_zoom_h
-#define sge_logic_camera_zoom_h
+#ifndef sgl_logic_camera_zoom_h
+#define sgl_logic_camera_zoom_h
 
 #include "../../sgl_logic.hpp"
-#include "IO/Key/sge_key.hpp"
+#include <IO/Key/sge_key.hpp>
 
 #include <optional>
 
@@ -35,4 +35,4 @@ namespace SGL
 	}
 }
 
-#endif // !sge_logic_camera_zoom_h
+#endif // !sgl_logic_camera_zoom_h

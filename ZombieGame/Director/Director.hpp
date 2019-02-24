@@ -8,17 +8,17 @@
 
 class Director final
 {
-	int Width = 0;
-	int Height = 0;
+	const int Width = 0;
+	const int Height = 0;
 
 	Scene* nextScene = nullptr;
 	std::vector<Scene*> scenes;
 
-	Director(int w, int h);
+	Director(const int w, const int h);
 	virtual ~Director() = default;
 
 public:
-	static Director* getDirector(int w = 0, int h = 0);
+	static Director* getDirector(const int w = 0, const int h = 0);
 
 	std::pair<int, int> getResolution();
 

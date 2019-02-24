@@ -15,7 +15,7 @@ namespace SGL
 	{
 		class SimpleMove : public Logic
 		{
-			Position position;
+			Position* position = nullptr;
 
 			float speed = 0;
 			const Key up;
@@ -25,7 +25,7 @@ namespace SGL
 
 		public:
 			using Logic::Logic;
-			SimpleMove(Position && position, const float speed, const SGE::Key up, const SGE::Key down, 
+			SimpleMove(Position* position, const float speed, const SGE::Key up, const SGE::Key down, 
 				const SGE::Key left, const SGE::Key right);
 	
 			~SimpleMove() = default;

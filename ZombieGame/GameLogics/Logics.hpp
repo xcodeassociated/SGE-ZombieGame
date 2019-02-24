@@ -5,14 +5,12 @@
 #include <random>
 #include <functional>
 
-#include <Logic/sge_logic.hpp>
-#include <Logic/Logics/Colliders/sge_logic_collide.hpp>
+#include <Logic/sgl_logic.hpp>
+#include <Logic/Logics//sge_logic_collide.hpp>
 #include <Box2D/Dynamics/b2WorldCallbacks.h>
 #include <IO/Key/sge_key.hpp>
-#include <Object/Camera2d/sge_camera2d.hpp>
+#include <Camera2d/sge_camera2d.hpp>
 #include <IO/Mouse/sge_mouse.hpp>
-
-#include "Objects.hpp"
 
 namespace SGE {
 	class Scene;
@@ -48,7 +46,7 @@ public:
 	virtual void performLogic() override;
 };
 
-class PortalLogic : public SGE::Logics::Collide
+class PortalLogic : public SGL::Logics::Collide
 {
 	SGE::Object* portal = nullptr;
 	SGE::Object* player = nullptr;
@@ -106,9 +104,9 @@ public:
 class Timer : public SGE::Logic
 {
 	float time = .0f;
-	SGE::Action* action = nullptr;
+	SGL::Action* action = nullptr;
 public:
-	Timer(float time, SGE::Action* action);
+	Timer(float time, SGL::Action* action);
 	void performLogic() override;
 };
 
