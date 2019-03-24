@@ -20,6 +20,8 @@ set(GAME_SOURCE_FILES
 
 add_executable(${PROJECT_NAME} ${GAME_SOURCE_FILES})
 
+add_executable(entt_example entt_example.cpp)
+
 if (NOT INCLUDE_ENGINE_PROJECT)
 	target_link_libraries(${PROJECT_NAME}
 		${SGE_LIBRARIES}
