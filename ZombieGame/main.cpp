@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cstdint>
 #include <tuple>
+#include <memory>
 #include <boost/filesystem.hpp>
 
 #include <entt/entt.hpp>
@@ -22,8 +23,9 @@
 #include <Shape/sge_shape_rectangle.hpp>
 #include <Sprite/sge_sprite.hpp>
 
-namespace fs = boost::filesystem;
+#include "SDL.h"
 
+namespace fs = boost::filesystem;
 int main(int argc, char * argv[])
 {
     (void)argc;
@@ -32,52 +34,64 @@ int main(int argc, char * argv[])
 	std::cout.setf(std::ios::boolalpha);
 	std::cout.sync_with_stdio(true);
 
-	const fs::path app_path = fs::system_complete(argv[0]).remove_filename();
+ 	const fs::path app_path = fs::system_complete(argv[0]).remove_filename();
 	const fs::path shader_path = app_path / fs::path("shaders");
 
-	SGE::Color window_color(0, 0, 0, 1);
-	SGE::Window window({ 800, 600 });
+	SGE::Color window_color{255, 255, 255, 255};
+	SGE::Window window({800, 600});
 	window.createWindow(window_color);
-	
-	SGE::Camera2d camera(800, 600);
+		
+		std::cout << window.isHidden() << std::endl;
+
+	SGE::Camera2d camera{800, 600};
 	camera.setPosition(0, 0);
 	camera.setScale(1);
+    camera.update();
 
-	SGE::TextureCache* texture_cache = SGE::TextureCache::getSingleton();
+    SGE::TextureCache* texture_cache = SGE::TextureCache::getSingleton();
+	SGE::Renderer renderer((shader_path / "colorShader.vert").string(), 
+		(shader_path / "colorShader.frag").string(), {800, 600});
 
-	SGE::Texture sprite0_texture;
-	sprite0_texture.path = (app_path / "Resources/Textures/circle.png").string();
-	sprite0_texture.texture = texture_cache->getTexture(sprite0_texture.path.c_str());
-
-	SGE::Renderer renderer((shader_path / "colorShader.vert").string(), (shader_path / "colorShader.frag").string(), {800, 600});
 	window.showWindow();
 
-	SGE::Circle circle(0.5);
-	SGE::Shape* sprite0_shape = &circle;
-	SGE::Sprite sprit0(0.0f, 0.0f, sprite0_shape, &sprite0_texture);
+		std::cout << window.isHidden() << std::endl;
+		std::cout << "show window" << std::endl;
+
+    SGE::Texture sprite0_texture;
+	sprite0_texture.path = (app_path / "Resources/Textures/red_bricks.png").string();
+	sprite0_texture.texture = texture_cache->getTexture(sprite0_texture.path.c_str());
+	std::unique_ptr<SGE::Rectangle> rect = std::make_unique<SGE::Rectangle>(32, 32);
+	SGE::Shape *sprite0_shape = rect.get();
+	SGE::Sprite sprit0(100.f, 100.f, sprite0_shape, &sprite0_texture);
 	sprit0.setVisible(true);
 	sprit0.setDrawable(true);
 
-	camera.update();
-	renderer.setContext(&camera);
+	// Game Loop
+	bool quit = false;
+	while (!quit) {
+		// IO	
+		SDL_Event e;
+		while (SDL_PollEvent(&e)) {
+			if (e.type == SDL_QUIT) {
+				quit = true;
+			}
+		}
 
-	//while (true) {
+		// Render 
+		camera.update();
 
-		static glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-		static SGE::Color color(255, 255, 255, 255);
-		SGE::Rectangle tile(64, 64, 0);
-		const float width = tile.getWidth();
-		const float height = tile.getHeight();
-		glm::vec4 destRect(sprit0.getX() - width * .5f, sprit0.getY() - height * .5f, width, height);
+		renderer.setContext(&camera);
+		
+		glm::vec4 uv(.0f, .0f, 1.0f, 1.0f);
+		SGE::Color color(255, 255, 255, 255);
+		renderer.render(&sprit0, uv, color);
+        
+		renderer.usetContext(0, window.getWindow());
+    }
 
-		renderer.render(&sprit0, uv, color, destRect);
+	// quit...
+		std::cout << "finished" << std::endl;
 
-	//}
-	renderer.usetContext(0, window.getWindow());
-
-
-#ifdef _WINDOWS
-	system("pause");
-#endif
-    return 0;
+	SDL_Quit();
+	return 0;
 }
