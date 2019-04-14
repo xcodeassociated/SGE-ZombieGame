@@ -50,9 +50,18 @@ int main(int argc, char * argv[])
 	sprite0_texture.texture = texture_cache->getTexture(sprite0_texture.path.c_str());
 	std::unique_ptr<SGE::Rectangle> rect = std::make_unique<SGE::Rectangle>(32, 32);
 	SGE::Shape* sprite0_shape = rect.get();
-	SGE::Sprite sprit0(0.f, 0.f, sprite0_shape, &sprite0_texture);
+	SGE::Sprite sprit0(-32.f, 0.f, sprite0_shape, &sprite0_texture);
 	sprit0.setVisible(true);
 	sprit0.setDrawable(true);
+
+	SGE::Texture sprite1_texture;
+	sprite1_texture.path = (app_path / "Resources/Textures/zombie.png").string();
+	sprite1_texture.texture = texture_cache->getTexture(sprite1_texture.path.c_str());
+	std::unique_ptr<SGE::Circle> circle = std::make_unique<SGE::Circle>(16);
+	SGE::Shape* sprite1_shape = circle.get();
+	SGE::Sprite sprit1(32.f, 0.f, sprite1_shape, &sprite1_texture);
+	sprit1.setVisible(true);
+	sprit1.setDrawable(true);
 
 	// Game Loop
 	bool quit = false;
@@ -72,8 +81,10 @@ int main(int argc, char * argv[])
 		
 		glm::vec4 uv(.0f, .0f, 1.0f, 1.0f);
 		SGE::Color color(255, 255, 255, 255);
+
 		renderer.render(&sprit0, uv, color);
-        
+		renderer.render(&sprit1, uv, color);
+
 		renderer.usetContext(0, window.getWindow());
     }
 
