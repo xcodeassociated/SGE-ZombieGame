@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  ZombieGame
-//
-//  Created by Hamashy on 13.02.2016.
-//  Copyright © 2016 Hamashy. All rights reserved.
-//
-
 #include <iostream>
 #include <cstdint>
 #include <tuple>
@@ -24,13 +16,14 @@
 #include <Sprite/sge_sprite.hpp>
 
 #include "SDL.h"
+#include "RenderSystem/Vertex/sge_vertex.hpp"
 
 namespace fs = boost::filesystem;
 int main(int argc, char * argv[])
 {
     (void)argc;
     (void)argv;
-	
+
 	std::cout.setf(std::ios::boolalpha);
 	std::cout.sync_with_stdio(true);
 
@@ -41,8 +34,6 @@ int main(int argc, char * argv[])
 	SGE::Window window({800, 600});
 	window.createWindow(window_color);
 		
-		std::cout << window.isHidden() << std::endl;
-
 	SGE::Camera2d camera{800, 600};
 	camera.setPosition(0, 0);
 	camera.setScale(1);
@@ -54,15 +45,12 @@ int main(int argc, char * argv[])
 
 	window.showWindow();
 
-		std::cout << window.isHidden() << std::endl;
-		std::cout << "show window" << std::endl;
-
     SGE::Texture sprite0_texture;
 	sprite0_texture.path = (app_path / "Resources/Textures/red_bricks.png").string();
 	sprite0_texture.texture = texture_cache->getTexture(sprite0_texture.path.c_str());
 	std::unique_ptr<SGE::Rectangle> rect = std::make_unique<SGE::Rectangle>(32, 32);
-	SGE::Shape *sprite0_shape = rect.get();
-	SGE::Sprite sprit0(100.f, 100.f, sprite0_shape, &sprite0_texture);
+	SGE::Shape* sprite0_shape = rect.get();
+	SGE::Sprite sprit0(0.f, 0.f, sprite0_shape, &sprite0_texture);
 	sprit0.setVisible(true);
 	sprit0.setDrawable(true);
 
@@ -90,8 +78,8 @@ int main(int argc, char * argv[])
     }
 
 	// quit...
-		std::cout << "finished" << std::endl;
-
+	std::cout << "finished" << std::endl;
 	SDL_Quit();
+
 	return 0;
 }
